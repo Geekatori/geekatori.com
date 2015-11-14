@@ -1,0 +1,82 @@
+﻿@charset "UTF-8";
+//☃
+@import "compass";
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: #f8f8f8;
+    color: #222;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+*,
+*:before,
+*:after {
+    @include box-sizing(border-box);
+}
+.row {
+    @include display-flex;
+    @include flex-wrap(wrap);
+    height: #{(100% / 6)};
+    margin: 0;
+    padding: 0;
+}
+.cell {
+    @include display-flex;
+    @include align-items(center);
+    @include flex(1);
+    @include transition(all .3s);
+    width: 100%;
+    padding: 0 5%;
+    height: 100%;
+    color: #222;
+    font-size: 3vw;
+    line-height: 1;
+    text-decoration: none;
+    span {
+        @include transition(all .3s);
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        text-decoration: none;
+        span {
+            @include transition-delay(0);
+            opacity: 1;
+        }
+        &.twitter {
+            background-color: #00aced;
+        }
+        &.github {
+            background-color: #4183c4;
+        }
+        &.codepen {
+            background-color: #4183c4;
+        }
+        &.flickr {
+            background-color: #1d6ccc;
+        }
+        &.instagram {
+            background-color: #3f729b;
+        }
+        &.pinterest {
+            background-color: #cb2027;
+        }
+    }
+}
+$sel: '';
+@for $i from 1 through 14 {
+    $sel: if($i == 1, ".cell span", nest($sel, "+ span")) !global;
+
+    #{$sel} {
+        @include transition-delay(100ms + ($i * 25));
+    }
+}
