@@ -18,29 +18,20 @@ body {
 *:after {
     @include box-sizing(border-box);
 }
-.row {
-    @include display-flex;
-    @include flex-wrap(wrap);
-    height: #{(100% / 6)};
-    margin: 0;
-    padding: 0;
-}
 .cell {
     @include display-flex;
     @include align-items(center);
-    @include flex(1);
-    @include transition(all .3s);
+    @include transition(background-color .3s);
+    height: #{(100% / 6)};
     width: 100%;
     padding: 0 5%;
-    height: 100%;
     color: #222;
-    font-size: 3vw;
+    font-size: 5vh;
     line-height: 1;
     text-decoration: none;
     span {
-        @include transition(all .3s);
+        @include transition(opacity .3s);
         color: #fff;
-        text-decoration: none;
         opacity: 0;
     }
     &:hover,
@@ -77,6 +68,6 @@ $sel: '';
     $sel: if($i == 1, ".cell span", nest($sel, "+ span")) !global;
 
     #{$sel} {
-        @include transition-delay(100ms + ($i * 25));
+        @include transition-delay(150ms + ($i * 15));
     }
 }
