@@ -1,10 +1,9 @@
 ﻿@charset "UTF-8";
 //☃
-@import "compass";
 
 html,
 body {
-    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
     height: 100%;
     min-height: 100%;
     padding: 0;
@@ -12,6 +11,7 @@ body {
     border: none;
     background-color: #f8f8f8;
     color: #222;
+    font-weight: 300;
 }
 *,
 *:before,
@@ -19,8 +19,12 @@ body {
     box-sizing: border-box;
 }
 .cell {
-    @include display-flex;
-    @include align-items(center);
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
     transition: background-color .3s;
     height: #{(100% / 6)};
     width: 100%;
@@ -43,23 +47,16 @@ body {
             transition-delay: 0;
             opacity: 1;
         }
-        &.twitter {
-            background-color: #00aced;
-        }
-        &.github {
-            background-color: #4183c4;
-        }
-        &.codepen {
-            background-color: #222;
-        }
-        &.flickr {
-            background-color: #1d6ccc;
-        }
-        &.instagram {
-            background-color: #3f729b;
-        }
-        &.pinterest {
-            background-color: #cb2027;
+
+        @each $social, $social-color in (twitter, #00aced), 
+                                        (github #4183c4),
+                                        (codepen, #222),
+                                        (flickr, #1d6ccc),
+                                        (instagram, #3f729b),
+                                        (pinterest, #cb2027) {
+            &.#{$social} {
+                background-color: #{$social-color};
+            }
         }
     }
 }
