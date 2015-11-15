@@ -3,29 +3,25 @@
 
 html,
 body {
-    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
     height: 100%;
     min-height: 100%;
     padding: 0;
     margin: 0;
     border: none;
     background-color: #f8f8f8;
-    color: #222;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
     font-weight: 300;
-}
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
+    color: #222;
 }
 .cell {
+    box-sizing: border-box;
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
     -webkit-align-items: center;
     -ms-align-items: center;
     align-items: center;
-    transition: background-color .3s;
     height: #{(100% / 6)};
     width: 100%;
     padding: 0 5%;
@@ -33,10 +29,21 @@ body {
     font-size: 5vh;
     line-height: 1;
     text-decoration: none;
+    transition: background-color .3s;
     span {
-        transition: opacity .3s;
+        box-sizing: border-box;
         color: #fff;
         opacity: 0;
+        transition: opacity .3s;
+        transition-delay: 150ms;
+
+        @for $i from 1 through 14 {
+            $sel: if($i == 1, "+ span", nest($sel, "+ span"));
+
+            #{$sel} {
+                transition-delay: (150ms + ($i * 15));
+            }
+        }
     }
     &:hover,
     &:focus,
@@ -44,7 +51,6 @@ body {
         color: #fff;
         text-decoration: none;
         span {
-            transition-delay: 0;
             opacity: 1;
         }
 
@@ -58,13 +64,5 @@ body {
                 background-color: #{$social-color};
             }
         }
-    }
-}
-$sel: '';
-@for $i from 1 through 14 {
-    $sel: if($i == 1, ".cell span", nest($sel, "+ span")) !global;
-
-    #{$sel} {
-        transition-delay: (150ms + ($i * 15));
     }
 }
