@@ -22,11 +22,11 @@ body {
     -webkit-align-items: center;
     -ms-align-items: center;
     align-items: center;
-    height: #{(100% / 8)};
+    height: #{(100% / 9)};
     width: 100%;
     padding: 0 4vw;
     color: #222;
-    font-size: 5vh;
+    font-size: 4vh;
     line-height: 1;
     text-decoration: none;
     transition: background-color .3s;
@@ -54,10 +54,11 @@ body {
             opacity: 1;
         }
 
-        @each $social, $social-color in (twitter, #00aced), 
+        @each $social, $social-color in (twitter, #00aced),
                                         (github #4183c4),
                                         (codepen, #222),
                                         (strava, #fc4c02),
+                                        (medium, #02b875),
                                         (vimeo, #4bf),
                                         (flickr, #1d6ccc),
                                         (instagram, #3f729b),
